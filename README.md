@@ -138,6 +138,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 haproxy_stats: yes
 haproxy_stats_port: 1936
 haproxy_stats_bind_addr: "0.0.0.0"
+haproxy_stats_socket: /var/lib/haproxy/stats
 
 # Default setttings for HAProxy.
 haproxy_retries: 3
