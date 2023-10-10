@@ -42,7 +42,7 @@ frontend {{ frontend.name }}
 
     default_backend {{ frontend.default_backend }}
     mode {{ frontend.mode | default('http') }}
-    {% if frontend.option %}
+    {% if frontend.option is defined %}
         {% for opt in frontend.option %}
             option {{ opt }}
         {% endfor %}
