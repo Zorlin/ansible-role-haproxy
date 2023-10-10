@@ -43,15 +43,17 @@ frontend {{ frontend.name }}
     default_backend {{ frontend.default_backend }}
     mode {{ frontend.mode | default('http') }}
     {% if frontend.option is defined %}
-        {% for opt in frontend.option %}
-            option {{ opt }}
-        {% endfor %}
+    {% for opt in frontend.option %}
+    option {{ opt }}
+    {% endfor %}
     {% else %}
-        option httplog
+    option httplog
     {% endif %}
-    {% if frontend.custom_config is defined %}{{ frontend.custom_config }}{% endif %}
-
+    {% if frontend.custom_config is defined %}
+    {{- frontend.custom_config -}}
+    {% endif %}
 {% endfor %}
+
 {% for backend in haproxy_backends %}
 backend {{ backend.name }}
 {% if backend.httpcheck is defined and backend.httpcheck %}
