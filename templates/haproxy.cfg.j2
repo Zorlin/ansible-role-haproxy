@@ -42,10 +42,12 @@ frontend {{ frontend.name }}
 
     default_backend {{ frontend.default_backend }}
     mode {{ frontend.mode | default('http') }}
-    {% if frontend.option is defined and frontend.option|length > 0 %}
-    option {{ frontend.option }}
-    {% elif frontend.option is not defined %}
-    option httplog
+    {% if frontend.option %}
+        {% for opt in frontend.option %}
+            option {{ opt }}
+        {% endfor %}
+    {% else %}
+        option {{ default('httplog') }}
     {% endif %}
     {% if frontend.custom_config is defined %}{{ frontend.custom_config }}{% endif %}
 
