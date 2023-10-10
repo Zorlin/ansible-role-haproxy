@@ -47,7 +47,7 @@ frontend {{ frontend.name }}
             option {{ opt }}
         {% endfor %}
     {% else %}
-        option {{ default('httplog') }}
+        option httplog
     {% endif %}
     {% if frontend.custom_config is defined %}{{ frontend.custom_config }}{% endif %}
 
