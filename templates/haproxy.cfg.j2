@@ -74,6 +74,11 @@ backend {{ backend.name }}
     server {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:{{ backend.port }} {% if backend.options is defined %}{{ backend.options | join(' ') }}{% endif %}
 
 {% endif %}
+
+{% if backend.custom_config is defined %}
+    {{ backend.custom_config }}
+{% endif %}
+
 {% endfor %}
 {% endfor %}
 
